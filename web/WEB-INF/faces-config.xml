@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+              xmlns:xi="http://www.w3.org/2001/XInclude"
+              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+ 
+    <converter>
+        <converter-id>UserrolesConverter</converter-id>
+        <converter-class>com.skeleton.converter.UserrolesConverter</converter-class>
+    </converter> 
+ 
+    
+ 
+    <converter>
+        <converter-id>CompanyConverter</converter-id>
+        <converter-class>com.skeleton.converter.CompanyConverter</converter-class>
+    </converter> 
+ 
+    
+    <converter>
+        <converter-id>DoubleConverter</converter-id>
+        <converter-class>com.skeleton.converter.DoubleConverter</converter-class>
+    </converter>
+ 
+ 
+    <converter>
+        <converter-id>IntegerConverter</converter-id>
+        <converter-class>com.skeleton.converter.IntegerConverter</converter-class>
+    </converter>
+ 
+    <converter>
+        <converter-id>DateConverter</converter-id>
+        <converter-class>com.skeleton.converter.DateConverter</converter-class>
+    </converter>
+ 
+    <converter>
+        <converter-id>ActionConverter</converter-id>
+        <converter-class>com.skeleton.converter.ActionConverter</converter-class>
+    </converter>
+ 
+    <converter>
+        <converter-id>ActioncategoryConverter</converter-id>
+        <converter-class>com.skeleton.converter.ActioncategoryConverter</converter-class>
+    </converter>
+ 
+    <converter>
+        <converter-id>UserConverter</converter-id>
+        <converter-class>com.skeleton.converter.UserConverter</converter-class>
+    </converter>
+    
+    <converter>
+        <converter-id>RoleConverter</converter-id>
+        <converter-class>com.skeleton.converter.RoleConverter</converter-class>
+    </converter>
+ 
+ 
+    <managed-bean>
+        <managed-bean-name>guestPreferences</managed-bean-name>
+        <managed-bean-class>com.skeleton.bean.GuestPreferences</managed-bean-class>
+        <managed-bean-scope>session</managed-bean-scope>
+    </managed-bean>
+ 
+    <managed-bean>
+        <managed-bean-name>themeSwitcherBean</managed-bean-name>
+        <managed-bean-class>com.skeleton.bean.ThemeSwitcherBean</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+        <managed-property>
+            <property-name>gp</property-name>
+            <value>#{guestPreferences}</value>
+        </managed-property>
+    </managed-bean>
+ 
+ 
+    <managed-bean>
+        <managed-bean-name>administrationAction</managed-bean-name>
+        <managed-bean-class>com.skeleton.action.AdministrationAction</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+ 
+    
+    <application>
+   
+        <action-listener>org.primefaces.application.DialogActionListener</action-listener>
+        <navigation-handler>org.primefaces.application.DialogNavigationHandler</navigation-handler>
+        <view-handler>org.primefaces.application.DialogViewHandler</view-handler>  
+     
+        <!--  <view-handler>com.sun.facelets.FaceletViewHandler</view-handler> -->
+        <locale-config>
+            <default-locale>gr</default-locale>
+        </locale-config>
+  
+        <resource-bundle>
+            <base-name>com.skeleton.bundle.MessageBundle</base-name>
+            <var>bundle</var>
+        </resource-bundle>
+        <message-bundle>
+	  	com.skeleton.bundle.skeletonmsg
+	</message-bundle>
+        
+        
+    </application>
+ 
+    <lifecycle>
+        <phase-listener>org.omnifaces.eventlistener.ResetInputAjaxActionListener</phase-listener>
+    </lifecycle>
+ 
+    <!-- <factory>
+       <exception-handler-factory>com.hosp.exception.ShowcaseExceptionHandlerFactory</exception-handler-factory>
+    </factory> --> 
+    
+     
+    <!--  <lifecycle>
+     <phase-listener>com.hosp.listener.PhaseTracker</phase-listener>
+    </lifecycle> -->
+ 
+    <!--  <validator>
+     <validator-id>ListSizeValidator</validator-id>
+     <validator-class>com.validator.ListSizeValidator</validator-class>
+    </validator> -->
+
+</faces-config>
