@@ -92,7 +92,7 @@
                     </h:panelGroup>
                 </p:confirmDialog>
 
-                <p:dialog  header="#{bundle.warning}" severity="alert" modal="true" resizable="false"  widgetVar="alertMessageDlg"  visible="#{sessionBean.showGeneralDialog}" >                    
+                <p:dialog  header="#{bundle.warning}" modal="true" resizable="false"  widgetVar="alertMessageDlg"  visible="#{sessionBean.showGeneralDialog}" >                    
                     <p:panel widgetVar="primePanel">
                         <table>
                             <tr>
@@ -117,7 +117,7 @@
 
             </h:form>
             
-             <p:dialog  header="#{bundle.warning}" severity="alert" modal="true" resizable="false"  widgetVar="generalAlertWidget"   >                    
+             <p:dialog  header="#{bundle.warning}"  modal="true" resizable="false"  widgetVar="generalAlertWidget"   >                    
                  <p:panel widgetVar="alertPanelWidget" id="alertPanel">
                         <table>
                             <tr>
@@ -173,7 +173,7 @@
                 <p:confirmDialog header="#{bundle.disconnect}" severity="alert" visible="false"  message="#{bundle.msgDisconnect}" widgetVar="disconnectDlg">	        
                     <h:form >                         
                         <p:commandButton  value="OK" action="#{administrationAction.logoutAction(0)}" ajax="false"  />
-                        <p:commandButton type="button" value="#{bundle.cancel}" onclick="disconnectDlg.hide()" />	                                                  
+                        <p:commandButton type="button" value="#{bundle.cancel}" onclick="PF('disconnectDlg').hide()" />	                                                  
                     </h:form>  
                 </p:confirmDialog>
             </DIV>

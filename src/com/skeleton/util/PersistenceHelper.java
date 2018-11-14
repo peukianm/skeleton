@@ -4,47 +4,21 @@
  */
 package com.skeleton.util;
 
-import java.io.Serializable;
 import java.util.List;
-import javax.annotation.Resource;
 import javax.ejb.Stateless;
-import javax.ejb.TransactionManagement;
-import static javax.ejb.TransactionManagementType.BEAN;
-import static javax.ejb.TransactionManagementType.CONTAINER;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.UserTransaction;
 
 /**
  *
  * @author peukianm
  */
 @Stateless
-public class PersistenceHelper implements Serializable {
+public class PersistenceHelper  {
 
     @PersistenceContext(unitName = "skeleton")
     private EntityManager entityManager;
-    @Resource
-    private UserTransaction userTransaction;
-
-    public UserTransaction getUserTransaction() {
-//        try {
-//            if (userTransaction==null || userTransaction.getStatus()!=Status.STATUS_ACTIVE) {
-//                try {
-//                    Context context = new InitialContext();
-//                    userTransaction = (UserTransaction) context.lookup("java:comp/UserTransaction");
-//                } catch (NamingException ex) {
-//                }
-//            }                      
-//        } catch (SystemException ex) {}
-        return userTransaction;
-    }
-
-    public void setUserTransaction(UserTransaction userTransaction) {
-        this.userTransaction = userTransaction;
-    }
-
-    //UserTransaction userTransaction = (UserTransaction) context.lookup("java:comp/UserTransaction");
+   
     public EntityManager getEntityManager() {
         return entityManager;
     }

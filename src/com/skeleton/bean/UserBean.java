@@ -5,26 +5,25 @@ package com.skeleton.bean;
 
 import com.skeleton.entities.Company;
 import com.skeleton.entities.Role;
-import com.skeleton.entities.Userroles;
 import com.skeleton.entities.Users;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  * @author peukianm
  *
  */
-@ManagedBean
+@Named(value = "userBean")
 @ViewScoped
 public class UserBean implements Serializable{
 
-    @ManagedProperty(value = "#{sessionBean}")
+    @Inject
     private SessionBean sessionBean;
     private java.lang.String username;
     private java.lang.String password;

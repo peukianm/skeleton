@@ -17,9 +17,14 @@ import javax.persistence.EntityManager;
 import com.skeleton.entities.Users;
 import com.skeleton.util.*;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
-
-@ManagedBean(name = "sessionBean")
+//import javax.faces.bean.SessionScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
+import javax.inject.Named;
+import javax.enterprise.context.SessionScoped;
+//@ManagedBean(name = "sessionBean")
+//@SessionScoped
+@Named(value = "sessionBean")
 @SessionScoped
 public class SessionBean implements Serializable {
 

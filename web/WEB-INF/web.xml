@@ -10,32 +10,12 @@
     </context-param>
     <context-param>
         <param-name>javax.faces.STATE_SAVING_METHOD</param-name>
-        <param-value>server</param-value>
+        <param-value>client</param-value>
     </context-param>
-    <!-- <listener>
-        <listener-class>
-            com.sun.faces.config.ConfigureListener
-        </listener-class>
-    </listener> 
-     -->
     <context-param>
         <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
         <param-value>true</param-value>
     </context-param>
-    <!--<context-param>
-	    <param-name>javax.faces.PARTIAL_STATE_SAVING</param-name>
-	    <param-value>false</param-value>
-	</context-param> -->
-    <!-- <context-param>
-		<param-name>primefaces.PRIVATE_CAPTCHA_KEY</param-name>
-		<param-value>6LfwZwoAAAAAAEhRyntKF1PBzysAJLzqp2v-GMRR</param-value>
-	</context-param>
-
-          	<context-param>
-                 		<param-name>primefaces.PUBLIC_CAPTCHA_KEY</param-name>
-                 		<param-value>6LfwZwoAAAAAAI-oUHpdvRnkMfu9fXQHxc0P7IBu</param-value>
-          	</context-param>
-    -->
     <context-param>
         <param-name>primefaces.THEME</param-name>
         <param-value>#{guestPreferences.theme}</param-value>
@@ -44,35 +24,6 @@
         <param-name>javax.faces.DATETIMECONVERTER_DEFAULT_TIMEZONE_IS_SYSTEM_TIMEZONE</param-name>
         <param-value>true</param-value>
     </context-param>
-    <!-- <context-param>
-         		<param-name>org.ajax4jsf.SKIN</param-name>
-         		<param-value>classic</param-value>
-  	</context-param>
-  	<context-param>
-         		<param-name>org.richfaces.enableControlSkinning</param-name>
-         		<param-value>false</param-value>
-  	</context-param>
-  	<context-param>
-         		<param-name>org.richfaces.enableControlSkinningClasses</param-name>
-         		<param-value>false</param-value>
-  	</context-param>
-  	<context-param>
-         		<param-name>org.richfaces.skin</param-name>
-         		<param-value>classic</param-value>
-  	</context-param>
-  	 -->
-    <!--  <filter>
-          		<display-name>Ajax4jsf Filter</display-name>
-          		<filter-name>ajax4jsf</filter-name>
-          		<filter-class>org.ajax4jsf.Filter</filter-class>
-   	</filter>
-   	<filter-mapping>
-          		<filter-name>ajax4jsf</filter-name>
-          		<servlet-name>Faces Servlet</servlet-name>
-          		<dispatcher>REQUEST</dispatcher>
-          		<dispatcher>FORWARD</dispatcher>
-          		<dispatcher>INCLUDE</dispatcher>
-   	</filter-mapping> -->
     <filter>
         <filter-name>Character Encoding Filter</filter-name>
         <filter-class>com.skeleton.filter.CharacterEncodingFilter</filter-class>
@@ -81,18 +32,7 @@
         <filter-name>Character Encoding Filter</filter-name>
         <servlet-name>Faces Servlet</servlet-name>
     </filter-mapping>
-    
-<!--    <filter>
-        <filter-name>PrimeFaces FileUpload Filter</filter-name>
-        <filter-class>org.primefaces.webapp.filter.FileUploadFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>PrimeFaces FileUpload Filter</filter-name>
-        <servlet-name>Faces Servlet</servlet-name>
-    </filter-mapping> -->
-    
-        
-        
+       
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
@@ -103,12 +43,6 @@
         <servlet-class>com.skeleton.servlets.BootstrapServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
-    <!--<listener>
-        <listener-class>com.hosp.servlets.ServletRequestListenerEntityManager</listener-class>
-    </listener> -->
-    <!-- <listener>
-        <listener-class>org.omnifaces.eventlistener.ResetInputAjaxActionListener</listener-class>
-    </listener> -->
     <filter>
         <filter-name>Security Page Filter</filter-name>
         <filter-class>com.skeleton.filter.SecurityFilter</filter-class>

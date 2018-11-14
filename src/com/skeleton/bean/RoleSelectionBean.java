@@ -8,15 +8,16 @@ import com.skeleton.entities.Userroles;
 import java.io.Serializable;
 import java.util.List;
 import javax.annotation.PreDestroy;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Named;
 
 /**
  *
  * @author peukianm
  */
 
-@ManagedBean(name = "roleSelectionBean")
+
+@Named(value = "roleSelectionBean")
 @ViewScoped
 public class RoleSelectionBean  implements Serializable {
     

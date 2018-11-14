@@ -12,19 +12,20 @@ import java.math.BigDecimal;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.ejb.EJB;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+
+import javax.inject.Named;
 
 /**
  *
  * @author peukianm
  */
-@ManagedBean
+@Named(value = "resetBean")
 @ViewScoped
 public class ResetBean implements Serializable{
     
-    @ManagedProperty(value = "#{sessionBean}")
+    @Inject
     private SessionBean sessionBean;
     
     @EJB
@@ -51,10 +52,8 @@ public class ResetBean implements Serializable{
             }
         } else {
             show = false;
-        }
-        
+        }        
         System.out.println("INITIALIZING IN RESET BEAN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1111");
-
     }
 
     

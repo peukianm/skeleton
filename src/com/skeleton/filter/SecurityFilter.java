@@ -1,10 +1,6 @@
 package com.skeleton.filter;
 
 import java.io.IOException;
-import java.util.Enumeration;
-
-import javax.faces.application.ResourceHandler;
-import javax.faces.context.FacesContext;
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
 import javax.servlet.FilterConfig;
@@ -16,23 +12,16 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.skeleton.bean.SessionBean;
+import javax.inject.Inject;
 
-/**
- *
- * @author Jonathan Buckland
- */
 public class SecurityFilter implements Filter {
 
+    @Inject
+    private SessionBean sessionBean;
     private final static String FILTER_APPLIED = "_security_filter_applied";
-
-    public SecurityFilter() { //called once. no method arguments allowed here!
-    }
-
-    public void init(FilterConfig conf) throws ServletException {
-    }
-
-    public void destroy() {
-    }
+    public SecurityFilter() {}
+    public void init(FilterConfig conf) throws ServletException {}
+    public void destroy() {}
 
     /**
      * Creates a new instance of SecurityCheckFilter
@@ -42,47 +31,23 @@ public class SecurityFilter implements Filter {
 
         HttpServletRequest hreq = (HttpServletRequest) request;
         HttpServletResponse hres = (HttpServletResponse) response;
-        HttpSession session = hreq.getSession();
-//        Enumeration<String> en = session.getAttributeNames();
-
-
+        HttpSession session = hreq.getSession();        
         String checkforloginpage = hreq.getServletPath();
 
-//        try {
-////            System.out.println("+++++++++++++++++++++");
-//            //System.out.println("CHECKING FOR PAGE=" + checkforloginpage);
-////            System.out.println("SESSION=" + session);
-////            System.out.println("SESSIONBEAN=" + session.getAttribute("sessionBean"));
-////            System.out.println("USER=" + ((SessionBean) session.getAttribute("sessionBean")).getUsers());
-////            System.out.println("++++++++++++++++");
-//        } catch (Exception e) {
-//            // TODO: handle exception
-//        }
-        //String checkforloginpage = hreq.getPathTranslated();
-        if (checkforloginpage == null) {
-            checkforloginpage = "";
-        }
+        if (checkforloginpage == null)  checkforloginpage = "";
 
-
-        //System.out.println("Checking for="+checkforloginpage);
-        
-         
-        
-        
         if ((request.getAttribute(FILTER_APPLIED) == null)
-                && (!checkforloginpage.endsWith("index.jsp"))                
+                && (!checkforloginpage.endsWith("index.jsp"))
                 && (!checkforloginpage.endsWith("loginPage.jsf"))
                 && (!checkforloginpage.endsWith("resetPassword.jsf"))
                 && (!checkforloginpage.endsWith("error.jsf"))
                 && (checkforloginpage.contains("backend") || checkforloginpage.contains("common") || checkforloginpage.contains("templates"))) {
 
             request.setAttribute(FILTER_APPLIED, Boolean.TRUE);
-            String user = null;            
+            String user = null;
             if (session != null) {
-                if (session.getAttribute("sessionBean") != null && ((SessionBean) session.getAttribute("sessionBean")).getUsers() != null) {
-                    user = "OK";
-                }
-            } 
+                if (sessionBean != null && sessionBean.getUsers() != null)   user = "OK";               
+            }
 
             if (user == null) {
                 System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!REDIRECTING fROM SECURITY FILTER " + checkforloginpage);
@@ -100,13 +65,6 @@ public class SecurityFilter implements Filter {
                 return;
             }
         }
-        
-        
-        
-        
-        
-        
-        
 
 //        if (!hreq.getRequestURI().startsWith(hreq.getContextPath() + ResourceHandler.RESOURCE_IDENTIFIER)) { // Skip JSF resources (CSS/JS/Images/etc)
 //            hres.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // HTTP 1.1.

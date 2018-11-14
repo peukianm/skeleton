@@ -11,20 +11,19 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
-import org.primefaces.model.TreeNode;
+import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author peukianm
  */
-@ManagedBean
+@Named(value = "companyBean")
 @ViewScoped
 public class CompanyBean implements Serializable {
 
-    @ManagedProperty(value = "#{sessionBean}")
+    @Inject
     private SessionBean sessionBean;
     private List<Company> companies = new ArrayList<Company>(0);
     private Company company;

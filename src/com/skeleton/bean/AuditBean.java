@@ -19,19 +19,20 @@ import javax.faces.bean.ManagedProperty;
 //import javax.faces.bean.ViewScoped;
 import javax.inject.Named;
 import javax.faces.view.ViewScoped;
+import javax.inject.Inject;
 
 
 /**
  *
  * @author peukianm
  */
-//@ManagedBean
-@Named
+@Named(value = "auditBean")
 @ViewScoped
 public class AuditBean implements Serializable {
     
-    @ManagedProperty(value = "#{sessionBean}")
+    @Inject
     private SessionBean sessionBean;
+    
     private Date searchFromActionDate;
     private Date searchToActionDate;
     private Users searchUser;
@@ -39,7 +40,7 @@ public class AuditBean implements Serializable {
     private Action searchAction;
     private Company searchCompany;
 
-    private List<Auditing> audits = new ArrayList<Auditing>(0);
+    private List<Auditing> audits = new ArrayList<>(0);
 
     @PostConstruct
     public void init() {

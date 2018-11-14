@@ -18,29 +18,33 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-import javax.faces.bean.ApplicationScoped;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.annotation.PostConstruct;
+import javax.enterprise.context.ApplicationScoped;
+import javax.inject.Named;
 import org.primefaces.model.TreeNode;
 
 /**
  *
  * @author peukianm
  */
-@ManagedBean
+@Named(value = "applicationBean")
 @ApplicationScoped
 public class ApplicationBean implements Serializable {
 
     String propertyValue;
+    List<Company> companies;
+    List<Role> roles;
+    List<Action> actions;
+    
+    @PostConstruct
+    public void init() {}
+
 
     public String getPropertyValue(String key) {
         propertyValue = SystemParameters.getInstance().getProperty(key);
         return propertyValue;
     }
-    
-    
-    List<Company> companies;
-
+          
     public List<Company> getCompanies() {
         if (companies == null) {
             CompanyDAO dao = new CompanyDAO();
@@ -51,10 +55,8 @@ public class ApplicationBean implements Serializable {
 
     public void setCompanies(List<Company> companies) {
         this.companies = companies;
-    }
-
-    
-   List<Role> roles;
+    }    
+   
 
     public List<Role> getRoles() {
         if (roles == null) {
@@ -73,10 +75,8 @@ public class ApplicationBean implements Serializable {
     public void resetCompanies() {
         this.companies = null;
     }
+      
     
-         
-    
-    List<Action> actions;
     public List<Action> getActions() {
         if (actions == null) {
             ActionDAO dao = new ActionDAO();

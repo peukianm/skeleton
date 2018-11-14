@@ -19,7 +19,9 @@
     <properties>
       <property name="eclipselink.jdbc.native-sql" value="true"/>
       <property name="eclipselink.target-database" value="Oracle"/>
-      <!--<property name="eclipselink.logging.level" value="FINE"/> 
+      <!--<property name="eclipselink.sessions-xml" value="mysession.xml"/>
+      <property name="eclipselink.allow-zero-id" value="true"/>
+      <property name="eclipselink.logging.level" value="FINE"/> 
       <property name="eclipselink.logging.parameters" value="true"/> -->
     </properties>
   </persistence-unit>

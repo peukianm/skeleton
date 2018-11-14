@@ -1,12 +1,11 @@
 package com.skeleton.bean;
 
 import java.io.Serializable;
-
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.faces.model.SelectItem;
+import javax.inject.Named;
 
-@ManagedBean(name = "skinBean")
+@Named(value = "skinBean")
 @SessionScoped
 public class SkinBean implements Serializable {
 

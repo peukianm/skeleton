@@ -4,11 +4,12 @@ import com.skeleton.util.MessageBundleLoader;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.enterprise.context.SessionScoped;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 
-@ManagedBean
+import javax.inject.Named;
+
+@Named(value = "errorBean")
 @SessionScoped
 public class ErrorBean implements Serializable {
 
