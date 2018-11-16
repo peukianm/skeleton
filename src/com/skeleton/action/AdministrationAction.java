@@ -14,6 +14,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
@@ -21,6 +23,8 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 import javax.servlet.http.HttpSession;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 import org.eclipse.persistence.sessions.Session;
@@ -57,6 +61,9 @@ public class AdministrationAction implements Serializable {
     @Inject
     ResetBean resetBean;
 
+    @Resource 
+    UserTransaction usrTransaction; 
+    
     public AdministrationAction() {
     }
 
@@ -66,16 +73,14 @@ public class AdministrationAction implements Serializable {
             //UserBean userBean = (UserBean) FacesUtils.getManagedBean("userBean");
             Users temp = null;
             List<Users> users = userDAO.findByProperty("username", userBean.getUsername());
-            if (users == null || users.size() > 0) {
-                if (SkeletonUtil.check(userBean.getPassword(), users.get(0).getPassword())) {
+            if (users == null || users.size() > 0) {                
+                if (SkeletonUtil.check(userBean.getPassword(), users.get(0).getPassword())) 
                     temp = users.get(0);
-                } else {
-                    temp = null;
-                }
-            } else {
+                else 
+                    temp = null;                
+            } else 
                 temp = null;
-            }
-
+            
             if (temp == null) {
                 userBean.setPassword(null);
                 sessionBean.setErrorMsgKey("errMsg_InvalidCredentials");
@@ -98,39 +103,41 @@ public class AdministrationAction implements Serializable {
 //            Session session = (Session) server.acquireClientSession();
 //                SessionFactory sessionFactory = new SessionFactory("default");
 //                Session session = sessionFactory.getSharedSession();
-//                UnitOfWork uow = session.acquireUnitOfWork();
-//                
+//                UnitOfWork uow = session.acquireUnitOfWork();           
 //                uow.commit();
-                EntityManagerFactory emf = Persistence.createEntityManagerFactory("skeleton");
-                EntityManager em = emf.createEntityManager();
-                EntityTransaction et = em.getTransaction();
-                et.begin();
-                Company company = new Company();
-                company.setActive(BigDecimal.ONE);
-                company.setEmail("email");
-                company.setName("Name of Company");
-//                uow.registerObject(company);
-                em.persist(company);
-                em.flush();
+                
 
-                Auditing auditing = new Auditing();
-                auditing.setUsers(temp);
-                auditing.setActiondate(FormatUtils.formatDateToTimestamp(new Date(), FormatUtils.FULLDATEPATTERN));
-                Action action = (Action) persistenceHelper.find(Action.class, "1");
-                auditing.setAction(action);
-                auditing.setCompany(temp.getCompany());
-                auditing.setComments("");
-//                uow.registerObject(auditing);
-                em.persist(auditing);
-                em.flush();
-
-                et.commit();
-
-                // persistenceHelper.create(company);
-                // return mainPageForward(temp);
+                usrTransaction.begin();
+                EntityManager em = persistenceHelper.getEntityManager();
+                Company comp = new Company();
+                comp.setName("1111111111111111111");
+                comp.setActive(BigDecimal.ONE);
+                //persistenceHelper.create(comp);
+                em.persist(comp);
+              
+                Users usr = new Users();
+                usr.setActive(BigDecimal.ONE);
+                usr.setUsername("Username1");
+                usr.setPassword("Password1");
+                usr.setName("Name1");
+                usr.setSurname("Surname1");
+                //persistenceHelper.create(usr);
+                em.persist(usr);
+                usrTransaction.commit();
+               
+                return mainPageForward(temp);
             }
             return "";
         } catch (Exception e) {
+            try {
+                usrTransaction.rollback();
+            } catch (IllegalStateException ex) {
+                java.util.logging.Logger.getLogger(AdministrationAction.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SecurityException ex) {
+                java.util.logging.Logger.getLogger(AdministrationAction.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (SystemException ex) {
+                java.util.logging.Logger.getLogger(AdministrationAction.class.getName()).log(Level.SEVERE, null, ex);
+            }
             e.printStackTrace();
             sessionBean.setErrorMsgKey("errMsg_GeneralError");
             goError(e);
@@ -155,7 +162,6 @@ public class AdministrationAction implements Serializable {
                 persistenceUtil.audit(temp, new BigDecimal(SystemParameters.getInstance().getProperty("ACT_LOGINUSER")), null);
                 sessionBean.setPageCode(SystemParameters.getInstance().getProperty("PAGE_SKELETON_HOME"));
                 sessionBean.setPageName(MessageBundleLoader.getMessage("homePage"));
-                int i = 3 / 0;
                 return "backend/main?faces-redirect=true";
             }
             return "";

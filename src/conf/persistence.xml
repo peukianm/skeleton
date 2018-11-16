@@ -4,25 +4,23 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <!--<jta-data-source>jdbc/OracleProduction</jta-data-source>-->
     <jta-data-source>jdbc/OracleXE</jta-data-source>
-        
     <class>com.skeleton.entities.Action</class>
     <class>com.skeleton.entities.Actionscategory</class>
     <class>com.skeleton.entities.Address</class>
     <class>com.skeleton.entities.Auditing</class>
     <class>com.skeleton.entities.Company</class>
-    <class>com.skeleton.entities.Role</class>   
+    <class>com.skeleton.entities.Role</class>
     <class>com.skeleton.entities.Userroles</class>
     <class>com.skeleton.entities.Users</class>
-    
-         
     <shared-cache-mode>DISABLE_SELECTIVE</shared-cache-mode>
     <properties>
       <property name="eclipselink.jdbc.native-sql" value="true"/>
       <property name="eclipselink.target-database" value="Oracle"/>
-      <!--<property name="eclipselink.sessions-xml" value="mysession.xml"/>
-      <property name="eclipselink.allow-zero-id" value="true"/>
-      <property name="eclipselink.logging.level" value="FINE"/> 
-      <property name="eclipselink.logging.parameters" value="true"/> -->
+      <!--<property name="eclipselink.sessions-xml" value="mysession.xml"/> 
+      <property name="eclipselink.allow-zero-id" value="true"/>-->
+      <property name="eclipselink.logging.level" value="FINE"/>
+      <property name="eclipselink.logging.parameters" value="true"/>
+      <property name="eclipselink.logging.level.cache" value="FINE"/>
     </properties>
   </persistence-unit>
 </persistence>

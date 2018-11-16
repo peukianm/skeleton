@@ -7,6 +7,8 @@ package com.skeleton.util;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
 
 /**
@@ -18,7 +20,10 @@ public class PersistenceHelper  {
 
     @PersistenceContext(unitName = "skeleton")
     private EntityManager entityManager;
-   
+    
+//    EntityManagerFactory emf = Persistence.createEntityManagerFactory("skeleton");
+//    EntityManager entityManager = emf.createEntityManager();
+
     public EntityManager getEntityManager() {
         return entityManager;
     }

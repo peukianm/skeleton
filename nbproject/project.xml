@@ -7,11 +7,11 @@
             <minimum-ant-version>1.6.5</minimum-ant-version>
             <web-module-libraries>
                 <library dirs="200">
-                    <file>${libs.log4j_2.11.classpath}</file>
+                    <file>${libs.EclipseLink_2.7.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.EclipseLink_2.7.classpath}</file>
+                    <file>${libs.OmniFaces3.2.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
@@ -19,15 +19,15 @@
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.OmniFaces_3.2.classpath}</file>
+                    <file>${libs.Mojarra_2.3.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.JSF_Mojarra_2.3.classpath}</file>
+                    <file>${libs.log4j2.11.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
                 <library dirs="200">
-                    <file>${libs.primefaces_6.2_support.classpath}</file>
+                    <file>${libs.Primefaces_6.2_support.classpath}</file>
                     <path-in-war>WEB-INF/lib</path-in-war>
                 </library>
             </web-module-libraries>

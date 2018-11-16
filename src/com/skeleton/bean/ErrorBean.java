@@ -4,13 +4,14 @@ import com.skeleton.util.MessageBundleLoader;
 import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.enterprise.context.RequestScoped;
 import javax.enterprise.context.SessionScoped;
 
 
 import javax.inject.Named;
 
 @Named(value = "errorBean")
-@SessionScoped
+@RequestScoped
 public class ErrorBean implements Serializable {
 
     String errorMSG = null;
