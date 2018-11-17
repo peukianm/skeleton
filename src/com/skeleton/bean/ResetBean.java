@@ -53,7 +53,6 @@ public class ResetBean implements Serializable{
         } else {
             show = false;
         }        
-        System.out.println("INITIALIZING IN RESET BEAN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1111");
     }
 
     

@@ -31,10 +31,7 @@ public class CompanyBean implements Serializable {
     private Address address;
 
     @PostConstruct
-    public void init() {        
-        System.out.println("INITIALIZING IN Company Bean!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!1111");
-
-    }
+    public void init() {}
 
     @PreDestroy
     public void reset() {

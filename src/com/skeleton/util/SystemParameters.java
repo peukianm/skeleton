@@ -102,8 +102,7 @@ public class SystemParameters {
 
             String logFileFullPathName = StringToolbox.replaceAll(appRoot, "\\", "/") + "/logs/skeleton.log";
 
-            
-            
+          
             
             
 //            LoggerContext ctx = (LoggerContext) LogManager.getContext(false);
@@ -149,9 +148,10 @@ public class SystemParameters {
 //            logProperties.put("log4j.appender.FILEAPPENDER.MaxBackupIndex", properties.getProperty("log4j.appender.FILEAPPENDER.MaxBackupIndex"));
 //            logProperties.put("log4j.appender.FILEAPPENDER.layout.ConversionPattern", properties.getProperty("log4j.appender.FILEAPPENDER.layout.ConversionPattern"));
 //            logProperties.put("log4j.appender.FILEAPPENDER.Threshold", properties.getProperty("log4j.appender.FILEAPPENDER.Threshold"));
-//
+// 
 //            PropertyConfigurator.configure(logProperties);
             logger.info("Initializing from : " + parametersFile + "\n log file is written to : " + logFileFullPathName);
+            logger.info("SYSTEM PARAMS!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

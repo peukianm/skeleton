@@ -38,14 +38,10 @@ public class UserBean implements Serializable{
     private boolean active;
 
         
-    public UserBean() {
-    }
+    public UserBean() {}
 
-    
     @PostConstruct
-    public void init() {
-        System.out.println("INITIALIZE USER BEAN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11");
-    }
+    public void init() {}
 
     @PreDestroy
     public void reset() {        
@@ -138,7 +134,7 @@ public class UserBean implements Serializable{
     }
 
     
-    
+  
     
     public java.lang.String getUsername() {
         return username;

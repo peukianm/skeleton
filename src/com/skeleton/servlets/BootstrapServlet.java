@@ -1,6 +1,5 @@
 package com.skeleton.servlets;
 
-import com.skeleton.bean.ApplicationBean;
 import java.io.IOException;
 
 import javax.servlet.ServletConfig;
@@ -8,12 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-//import com.hosp.scheduling.ScheduleLocator;
 import com.skeleton.util.StringToolbox;
 import com.skeleton.util.SystemParameters;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 
 
 public class BootstrapServlet extends HttpServlet 
@@ -25,25 +20,21 @@ public class BootstrapServlet extends HttpServlet
 //    ApplicationBean applicationBean;
     
     public void init(ServletConfig config) throws ServletException
-    {
-        
+    {       
         super.init(config) ;
         
 //        applicationBean.getActions();
 //        applicationBean.getRoles();
-//        applicationBean.getCompanies();
-       
-        System.out.println("BOOTSTRAP="+this.getServletContext().getRealPath("") + "/config/system.properties" );
+//        applicationBean.getCompanies();       
         SYSTEM_PROPERTIES_FILE = StringToolbox.replaceAll(this.getServletContext().getRealPath(""), "\\", "/") + "/config/system.properties" ;                                
         
-        //Initiliazing Propertyfile, logging
+        //Initiliazing Propertyfile
         SystemParameters.getInstance(SYSTEM_PROPERTIES_FILE, this.getServletContext().getRealPath(""), true) ;                 
         //Initializing Scheduler
         //ScheduleLocator.getInstance();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
-
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {}
 
 }

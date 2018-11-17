@@ -69,8 +69,7 @@ public class AdministrationAction implements Serializable {
 
     public String loginAction() {
         try {
-
-            //UserBean userBean = (UserBean) FacesUtils.getManagedBean("userBean");
+            if(logger.isDebugEnabled()) logger.debug("java logging level is DEBUG Enabled");  
             Users temp = null;
             List<Users> users = userDAO.findByProperty("username", userBean.getUsername());
             if (users == null || users.size() > 0) {                
@@ -99,32 +98,24 @@ public class AdministrationAction implements Serializable {
             } else if (userroles.size() == 1) {
                 temp.setRole(userroles.get(0).getRole());
 
-//                Server server = (Server)SessionManager.getManager().getSession("sdsdsddsd", HttpSession.class.getClassLoader());
-//            Session session = (Session) server.acquireClientSession();
-//                SessionFactory sessionFactory = new SessionFactory("default");
-//                Session session = sessionFactory.getSharedSession();
-//                UnitOfWork uow = session.acquireUnitOfWork();           
-//                uow.commit();
-                
-
-                usrTransaction.begin();
-                EntityManager em = persistenceHelper.getEntityManager();
-                Company comp = new Company();
-                comp.setName("1111111111111111111");
-                comp.setActive(BigDecimal.ONE);
-                //persistenceHelper.create(comp);
-                em.persist(comp);
-              
-                Users usr = new Users();
-                usr.setActive(BigDecimal.ONE);
-                usr.setUsername("Username1");
-                usr.setPassword("Password1");
-                usr.setName("Name1");
-                usr.setSurname("Surname1");
-                //persistenceHelper.create(usr);
-                em.persist(usr);
-                usrTransaction.commit();
-               
+//                usrTransaction.begin();
+//                EntityManager em = persistenceHelper.getEntityManager();
+//                Company comp = new Company();
+//                comp.setName("1111111111111111111");
+//                comp.setActive(BigDecimal.ONE);
+//                persistenceHelper.create(comp);
+//                //em.persist(comp);
+//              
+//                Users usr = new Users();
+//                //usr.setActive(BigDecimal.ONE);
+//                usr.setUsername("Username1");
+//                usr.setPassword("Password1");
+//                usr.setName("Name1");
+//                usr.setSurname("Surname1");
+//                persistenceHelper.create(usr);
+//                //em.persist(usr);
+//                usrTransaction.commit();
+//               
                 return mainPageForward(temp);
             }
             return "";
