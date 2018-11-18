@@ -12,26 +12,13 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.logging.Level;
 import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
-import javax.servlet.http.HttpSession;
-import javax.transaction.SystemException;
 import javax.transaction.UserTransaction;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
-import org.eclipse.persistence.sessions.Session;
-import org.eclipse.persistence.sessions.UnitOfWork;
-import org.eclipse.persistence.sessions.factories.SessionFactory;
-import org.eclipse.persistence.sessions.factories.SessionManager;
-import org.eclipse.persistence.sessions.server.Server;
 import org.primefaces.event.SelectEvent;
 
 public class AdministrationAction implements Serializable {
@@ -98,14 +85,12 @@ public class AdministrationAction implements Serializable {
             } else if (userroles.size() == 1) {
                 temp.setRole(userroles.get(0).getRole());
 
-//                usrTransaction.begin();
-//                EntityManager em = persistenceHelper.getEntityManager();
+//               usrTransaction.begin();
 //                Company comp = new Company();
 //                comp.setName("1111111111111111111");
 //                comp.setActive(BigDecimal.ONE);
 //                persistenceHelper.create(comp);
-//                //em.persist(comp);
-//              
+//                             
 //                Users usr = new Users();
 //                //usr.setActive(BigDecimal.ONE);
 //                usr.setUsername("Username1");
@@ -113,22 +98,21 @@ public class AdministrationAction implements Serializable {
 //                usr.setName("Name1");
 //                usr.setSurname("Surname1");
 //                persistenceHelper.create(usr);
-//                //em.persist(usr);
 //                usrTransaction.commit();
 //               
                 return mainPageForward(temp);
             }
             return "";
         } catch (Exception e) {
-            try {
-                usrTransaction.rollback();
-            } catch (IllegalStateException ex) {
-                java.util.logging.Logger.getLogger(AdministrationAction.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SecurityException ex) {
-                java.util.logging.Logger.getLogger(AdministrationAction.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (SystemException ex) {
-                java.util.logging.Logger.getLogger(AdministrationAction.class.getName()).log(Level.SEVERE, null, ex);
-            }
+//            try {
+//                usrTransaction.rollback();
+//            } catch (IllegalStateException ex) {
+//                java.util.logging.Logger.getLogger(AdministrationAction.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (SecurityException ex) {
+//                java.util.logging.Logger.getLogger(AdministrationAction.class.getName()).log(Level.SEVERE, null, ex);
+//            } catch (SystemException ex) {
+//                java.util.logging.Logger.getLogger(AdministrationAction.class.getName()).log(Level.SEVERE, null, ex);
+//            }
             e.printStackTrace();
             sessionBean.setErrorMsgKey("errMsg_GeneralError");
             goError(e);

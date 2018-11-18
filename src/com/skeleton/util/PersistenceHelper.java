@@ -5,11 +5,17 @@
 package com.skeleton.util;
 
 import java.util.List;
+import javax.annotation.Resource;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.PersistenceContext;
+import javax.transaction.HeuristicRollbackException;
+import javax.transaction.NotSupportedException;
+import javax.transaction.RollbackException;
+import javax.transaction.SystemException;
+import javax.transaction.UserTransaction;
 
 /**
  *
@@ -17,13 +23,13 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class PersistenceHelper  {
+        
+//    EntityManagerFactory emf = Persistence.createEntityManagerFactory("skeleton");
+//    EntityManager entityManager = emf.createEntityManager();
 
     @PersistenceContext(unitName = "skeleton")
     private EntityManager entityManager;
     
-//    EntityManagerFactory emf = Persistence.createEntityManagerFactory("skeleton");
-//    EntityManager entityManager = emf.createEntityManager();
-
     public EntityManager getEntityManager() {
         return entityManager;
     }
